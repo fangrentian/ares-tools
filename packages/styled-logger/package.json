@@ -1,6 +1,6 @@
 {
   "name": "ares-styled-logger",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "styled console",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -13,5 +13,10 @@
     }
   },
   "author": "ares <18292577207@126.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fangrentian/ares-tools.git",
+    "directory": "packages/styled-logger"
+  }
 }

@@ -144,7 +144,7 @@ PROJECT_DIR=C:\\workspace\\webstormProjects\\test\\
 LOCAL_DEPLOY_DIR=C:\\deploy_static\\deploy-tool-test\\
 
 # 本地下载目录
-LOCAL_DOWNLOAD_DIR=C:\\Users\\ares wei\\Downloads\\deploy-tool-test\\
+LOCAL_DOWNLOAD_DIR=C:\\Users\\ares\\Downloads\\deploy-tool-test\\
 
 # 堡垒机SSH配置
 BASTION_SSH_HOST=bastion-host.com
@@ -190,7 +190,7 @@ PROJECT_DIR=C:\\workspace\\webstormProjects\\test\\
 LOCAL_DEPLOY_DIR=C:\\deploy_static\\deploy-tool-test\\
 
 # 本地下载目录
-LOCAL_DOWNLOAD_DIR=C:\\Users\\ares wei\\Downloads\\deploy-tool-test\\
+LOCAL_DOWNLOAD_DIR=C:\\Users\\ares\\Downloads\\deploy-tool-test\\
 
 # 目标SSH配置
 TARGET_SSH_HOST=192.168.1.158

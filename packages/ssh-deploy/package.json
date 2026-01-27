@@ -1,6 +1,6 @@
 {
   "name": "ares-ssh-deploy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ssh deploy tools",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -27,5 +27,10 @@
     "lodash-es": "^4.17.21",
     "log4js": "^6.9.1",
     "node-ssh": "^13.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fangrentian/ares-tools.git",
+    "directory": "packages/ssh-deploy"
   }
 }
