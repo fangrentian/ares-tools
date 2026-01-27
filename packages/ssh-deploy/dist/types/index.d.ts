@@ -1,4 +1,4 @@
-import type { Channel, SFTPWrapper } from 'ssh2'
+import type { SFTPWrapper } from 'ssh2'
 
 export {};
 
@@ -15,6 +15,23 @@ declare global {
 		username?: string
 		password?: string
 		privateKey?: string
+		[key: string]: any
+	}
+	interface BastionSSHClientConfig extends SSHClientConfig {
+		[key: string]: any
+	}
+	interface TargetSSHClientConfig extends SSHClientConfig {
+		localDeployDir?: string
+		localDownloadDir?: string
+
+		remoteBackupDir?: string
+		remoteDir?: string
+		remoteDirTemp?: string
+
+		remoteHealthDir?: string
+		remoteHideHealthFileDir?: string
+		remoteHealthFile?: string
+		remoteHealthHiddenFile?: string
 		[key: string]: any
 	}
 	interface BastionChannelConfig {
@@ -38,6 +55,13 @@ declare global {
 		path: string
 		method?: 'sftp' | 'exec'
 		givenSftp?: SFTPWrapper
+		[key: string]: any
+	}
+
+	interface BuildConfig {
+		build?: boolean
+		mode?: string
+		projectDir?: string
 		[key: string]: any
 	}
 }

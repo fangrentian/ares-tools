@@ -13,6 +13,10 @@
     },
     "./utils/*": "./dist/utils/*"
   },
+  "scripts": {
+    "deploy:windows-server": "dotenvx run --env-file=.env.windows-server -- node src/utils/deploy-windows-server.js",
+    "deploy:linux-aliyun-bastion": "dotenvx run --env-file=.env.linux-aliyun-bastion -- node src/utils/deploy-linux-bastion.js"
+  },
   "author": "ares <18292577207@126.com>",
   "license": "MIT",
   "dependencies": {

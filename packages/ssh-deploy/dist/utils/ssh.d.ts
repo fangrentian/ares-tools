@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { NodeSSH, SSHExecCommandOptions } from 'node-ssh';
+import { NodeSSH, SSHExecCommandResponse, SSHExecCommandOptions } from 'node-ssh';
 import { Duplex, Writable, Readable } from 'stream';
 
 type ChannelType = "session" | "sftp" | "direct-tcpip" | "direct-streamlocal@openssh.com";
@@ -101,9 +101,9 @@ declare function getIntraServerSSHClient(channel: Channel, config: IntraServerSS
  * @param intraServerConfig
  * @param command
  * @param callback
- * @returns {Promise<void>}
+ * @returns {Promise<SSHExecCommandResponse>}
  */
-declare function execIntraServerCommand(bastionSSHClient: NodeSSH, channelConfig: BastionChannelConfig, intraServerConfig: IntraServerSSHClientConfig, command: string, callback?: any): Promise<void>;
+declare function execIntraServerCommand(bastionSSHClient: NodeSSH, channelConfig: BastionChannelConfig, intraServerConfig: IntraServerSSHClientConfig, command: string, callback?: any): Promise<SSHExecCommandResponse>;
 /**
  * @author: ares
  * @date: 2025/8/28 上午9:35
@@ -183,9 +183,9 @@ declare function makeDirectoryOnRemoteServer(ssh: NodeSSH, config: MakeDirectory
  * @param command
  * @param commandOptions
  * @param callback
- * @returns {Promise<void>}
+ * @returns {Promise<SSHExecCommandResponse>}
  */
-declare function execRemoteWindowServerCommand(ssh: NodeSSH, command: string, commandOptions?: SSHExecCommandOptions, callback?: any): Promise<void>;
+declare function execRemoteWindowServerCommand(ssh: NodeSSH, command: string, commandOptions?: SSHExecCommandOptions, callback?: any): Promise<SSHExecCommandResponse>;
 /**
  * @author: ares
  * @date: 2025/8/28 上午9:35

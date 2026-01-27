@@ -9,16 +9,16 @@ importers:
   .:
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.3.11
+        specifier: ^2.3.13
         version: 2.3.13
       '@changesets/cli':
         specifier: ^2.29.8
         version: 2.29.8(@types/node@22.19.7)
       '@tsconfig/node22':
-        specifier: ^22.0.0
+        specifier: ^22.0.5
         version: 22.0.5
       '@types/node':
-        specifier: ^22.13.1
+        specifier: ^22.19.7
         version: 22.19.7
       '@types/ssh2':
         specifier: ^1.15.5
@@ -52,6 +52,12 @@ importers:
         version: 13.2.1
 
   packages/styled-logger: {}
+
+  packages/test:
+    dependencies:
+      ares-ssh-deploy:
+        specifier: workspace:^
+        version: link:../ssh-deploy
 
 packages:
 
