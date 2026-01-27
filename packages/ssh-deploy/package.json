@@ -1,0 +1,27 @@
+{
+  "name": "ares-ssh-deploy",
+  "version": "1.0.0",
+  "description": "ssh deploy tools",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./utils/*": "./dist/utils/*"
+  },
+  "author": "ares <18292577207@126.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.49.0",
+    "child_process": "^1.0.2",
+    "dayjs": "^1.11.15",
+    "iconv-lite": "^0.7.0",
+    "lodash-es": "^4.17.21",
+    "log4js": "^6.9.1",
+    "node-ssh": "^13.2.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ares-styled-logger",
+  "version": "1.2.0",
+  "description": "styled console",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "author": "ares <18292577207@126.com>",
+  "license": "MIT"
+}

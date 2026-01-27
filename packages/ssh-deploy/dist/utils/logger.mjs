@@ -1,0 +1,1 @@
+import e from"log4js";const{LOG_LEVEL:o="info"}=process.env;e.configure({appenders:{datafile:{type:"dateFile",filename:"./logs/deploy.log",pattern:".yyyy-MM-dd"},console:{type:"console"}},categories:{default:{appenders:["datafile","console"],level:o}}});const l=e.getLogger("default");export{l as logger};
