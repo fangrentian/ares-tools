@@ -1,5 +1,11 @@
 # ares-styled-logger
 
+## 1.2.2
+
+### Patch Changes
+
+- fix bug
+
 ## 1.2.1
 
 ### Patch Changes

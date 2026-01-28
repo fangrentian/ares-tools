@@ -1,5 +1,11 @@
 # ares-ssh-deploy
 
+## 1.0.2
+
+### Patch Changes
+
+- fix bug
+
 ## 1.0.1
 
 ### Patch Changes

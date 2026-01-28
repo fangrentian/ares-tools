@@ -172,7 +172,7 @@ TARGET_HEALTH_FILE=/usr/share/nginx/html/health/index.html
 TARGET_HEALTH_HIDDEN_FILE=/usr/share/nginx/html/health/hide/index.html
 ```
 
-#### 示例代码 `.env.lwindows-server`
+#### 示例代码 `.env.windows-server`
 ```env
 # 日志级别
 LOG_LEVEL=info

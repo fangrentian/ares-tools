@@ -58,6 +58,9 @@ importers:
       ares-ssh-deploy:
         specifier: workspace:^
         version: link:../ssh-deploy
+      ares-styled-logger:
+        specifier: workspace:^
+        version: link:../styled-logger
 
 packages:
 

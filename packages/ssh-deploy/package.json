@@ -1,13 +1,13 @@
 {
   "name": "ares-ssh-deploy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ssh deploy tools",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
