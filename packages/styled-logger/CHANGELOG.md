@@ -1,5 +1,11 @@
 # ares-styled-logger
 
+## 1.2.5
+
+### Patch Changes
+
+- fix browser
+
 ## 1.2.4
 
 ### Patch Changes

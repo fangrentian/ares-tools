@@ -1,6 +1,6 @@
 {
   "name": "ares-styled-logger",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "styled console",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
