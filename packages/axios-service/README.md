@@ -8,86 +8,78 @@ import type {AxiosServiceConfig, IResponse} from 'ares-axios-service/types'
 
 // 定义axios在项目中使用的配置
 const axiosService = defineAxiosService({
-	baseUrl: 'http://192.168.1.158/mes/',
-    responseCodeField: 'code',
-    responseMsgField: 'msg',
-	getToken: ()=>{
-		// 根据实际情况实现获取token
-		return "real token"
-	}
+  baseUrl: 'http://192.168.1.100/', 
+  responseCodeField: 'code', 
+  responseMsgField: 'msg',
+  pageQueryPageField: 'page',
+  pageQueryPageSizeField: 'pageSize',
+  pageQueryPageBoField: 'pageBo',
+  getToken: () => {
+    // 根据实际情况实现获取token
+    return "real token"
+  }
 })
 
-// 解构出service父类和配置父类
-const {BaseService, BaseServiceConfigurator} = axiosService
+// 解构出`BaseService`父类
+const {BaseService} = axiosService
 
-// 实例化service父类
-const service = new BaseService({
-	prefix: '/api/dict/',
-	apiPathConfig: {
-		list: 'findList',
-		typeList: 'findTypeList',
-	}
+// 实例化`BaseService`父类
+const baseService = new BaseService({
+  prefix: '/api/dict/',
+  apiPathConfig: {
+    list: 'findList',
+    pageList: 'findPageList',
+  }
 })
 
-// 使用service父类实例`getList`方法
-service.getList([{fieldName: 'status', fieldValue: '1'}, {fieldName: 'type', fieldValue: '44'}]).then(res=>{
-	console.log('##postList', res)
+// 使用`BaseService`父类实例调用`getList`实例方法
+baseService.getList([{fieldName: 'status', fieldValue: '1'}, {fieldName: 'type', fieldValue: '44'}]).then(res => {
+  console.log('##postList', res)
 })
 
-// 使用service父类实例通用get方法`getService`方法
-service.getService({
-	url: '/api/dict/findTypeList',
-	method: 'get',
-	params: {
-		status: 1,
-		type: 44
-	}
-}).then(res=>{
-	console.log('##getService', res)
+// 使用`BaseService`父类实例调用`postPageList`实例方法
+baseService.postPageList(1, 10).then(res=>{
+  console.log('##postPageList', res)
 })
 
-// 使用service父类实例通用post方法`postService`方法
-service.postService({
-	url: '/api/dict/findTypeList',
-	method: 'post',
-	data: {
-		status: 1,
-		type: 44
-	}
-}).then(res=>{
-	console.log('##postService', res)
-})
 
+// 结构出通用`postService`实例方法, 自动绑定上下文
+const {postService} = baseService
+
+postService({
+  url: '/api/dict/findList',
+  method: 'post', 
+  data: {
+    status: 1, type: 44
+  }
+}).then(res => {
+  console.log('##解构方法postService', res)
+})
 
 // 大型项目, 分模块, 可新建service继承BaseService
 class DictService extends BaseService {
-    constructor(
-            options: AxiosServiceConfig = {},
-            requester?: (<T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>) | null | undefined,
-            Configurator: (new (options: AxiosServiceConfig)=> any) | null | undefined = BaseServiceConfigurator
-    ) {
-        super(options, requester, Configurator)
-    }
-	
-	async findCommonList(status: number, type: number): Promise<IResponse<Record<string, any>[]>> {
-		return this.postService<Record<string, any>[]>({
-			url: '/api/dict/findTypeList',
-			method: 'post',
-			data: {
-				status,
-				type
-			}
-		}).then(res=>{
-			console.log('##findCommonList', res)
-			return res
-		})
-	}
+  constructor(options: AxiosServiceConfig = {}, requester?: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>) {
+    super(options, requester)
+  }
+
+  async findList(status: number, type: number): Promise<IResponse<Record<string, any>[]>> {
+    return this.postService<Record<string, any>[]>({
+      url: `${this.prefix}findCommonList`,
+      method: 'post', 
+      data: {
+        status, type
+      }
+    }).then(res => {
+      console.log('##findList', res)
+      return res
+    })
+  }
 }
 
-// 实例化模块化service
-const dictService = new DictService()
-// 使用模块化service实例方法
-dictService.findCommonList(1, 44)
+// 实例化模块化`DictService`
+const dictService = new DictService({prefix: '/api/code/'})
+// 使用模块化`DictService`实例方法
+dictService.findList(1, 44)
 ```
 
 ## API 详细说明
@@ -96,19 +88,22 @@ dictService.findCommonList(1, 44)
 - **功能**: 定义并初始化一个 Axios 服务实例，包含了完整的请求/响应拦截器、错误处理等功能
 - **参数**: 
   - `config` (AxiosDefineConfig, 可选): 配置对象，包含 baseUrl、token 获取方法等
-- **返回**: 包含 `$service`、`$upload`、`$download`、`$axios`三个方法和`BaseServiceConfigurator`、`BaseService` 两个类
+- **返回**: 包含 `$service`、`$upload`、`$download`、`$axios` 四个方法和 `BaseService` 一个类
 
 #### AxiosDefineConfig 配置项
-- `baseUrl`: API 请求的基础路径，默认为当前页面协议+主机+端口
-- `host`: 主机地址，用于会话过期时跳转
+- `baseUrl`: API 请求的基础路径，默认为 `${location.protocol}//${location.hostname}:${location.port}`
+- `host`: 主机地址，用于会话过期时跳转，默认为 `${location.protocol}//${location.hostname}:${location.port}`
 - `responseSuccessStatus`: 响应成功的 HTTP 状态码，默认为 200
 - `responseSuccessCode`: 响应成功的业务码，默认为 1
 - `sessionExpireCode`: 会话过期的业务码，默认为 -1
 - `responseCodeField`: 响应体中表示业务码的字段名，默认为 'code'
 - `responseMsgField`: 响应体中表示消息的字段名，默认为 'msg'
-- `defaultHeaders`: 默认请求头类型，默认为 'application/json'
+- `pageQueryPageField`: 分页查询时页码字段名，默认为 'page'
+- `pageQueryPageSizeField`: 分页查询时每页数量字段名，默认为 'pageSize'
+- `pageQueryPageBoField`: 分页查询时分页对象字段名，默认为 'pageBo'
+- `requestContentType`: 请求头类型，默认为 'application/json'
 - `requestTimeout`: 请求超时时间，默认为 300000ms (5分钟)
-- `tokenKey`: Token 存储的键名，默认为 'Authorization'
+- `tokenKey`: 请求头中Token存储的键名，默认为 'Authorization'
 - `getToken`: 获取 Token 的函数
 - `handleErrorMsg`: 处理错误消息的函数
 
@@ -138,10 +133,6 @@ dictService.findCommonList(1, 44)
 - **参数**: `config` (AxiosRequestConfig): 请求配置对象
 - **返回**: Promise<AxiosResponse>
 
-### BaseServiceConfigurator 类
-- **功能**: 配置服务的基本参数，包括权限配置、API 路径映射等
-- **构造函数参数**: `config` (AxiosServiceConfig): 配置对象
-
 #### AxiosServiceConfig 配置项
 - `module`: 模块名，默认为 'sys'
 - `prefix`: API 路径前缀，默认为 '/'
@@ -154,7 +145,6 @@ dictService.findCommonList(1, 44)
 - **构造函数参数**: 
   - `options`: 配置选项
   - `requester`: 请求函数，默认使用 `$service`
-  - `Configurator`: 配置类，默认为 `BaseServiceConfigurator`
 
 #### BaseService 实例方法
 
@@ -277,6 +267,9 @@ dictService.findCommonList(1, 44)
 - `REQUEST_CONTENT_TYPE`: 默认请求类型 ('application/json')
 - `REQUEST_TIMEOUT`: 请求超时时间 (300000ms)
 - `TOKEN_KEY`: 请求头中的token键名 ('Authorization')
+- `PAGE_QUERY_PAGE_FIELD`: 分页请求page字段名 ('page')
+- `PAGE_QUERY_PAGE_SIZE_FIELD`: 分页请求page字段名 ('pageSize')
+- `PAGE_QUERY_PAGE_BO_FIELD`: 分页请求page字段名 ('pageBo')
 
 ### 类型定义
 - `IResponse<T, P>`: 统一响应类型，包含 `code`、`msg`、`data` 字段, 布尔泛型`P` 表示是否为分页数据

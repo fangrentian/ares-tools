@@ -24,7 +24,10 @@ interface AxiosDefineConfig {
 	sessionExpireCode?: number | string
 	responseCodeField?: string
 	responseMsgField?: string
-	defaultHeaders?: AxiosContentType
+	pageQueryPageField?: string
+	pageQueryPageSizeField?: string
+	pageQueryPageBoField?: string
+	requestContentType?: AxiosContentType
 	requestTimeout?: number
 	tokenKey?: string
 	getToken?: Fn
@@ -66,28 +69,15 @@ declare const defineAxiosService: (config?: AxiosDefineConfig) => {
     $upload: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
     $download: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
     $axios: (config: AxiosRequestConfig) => Promise<AxiosResponse>;
-    BaseServiceConfigurator: {
-        new (config: AxiosServiceConfig): {
+    BaseService: {
+        new (options?: AxiosServiceConfig, requester?: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>): {
+            requester: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
+            definedServiceEnv: AxiosDefineConfig;
             module: string;
             prefix: string;
             permissionPrefix: string;
             permissionConfig: Record<string, string>;
             apiPathConfig: Record<string, string>;
-        };
-    };
-    BaseService: {
-        new (options?: AxiosServiceConfig, requester?: (<T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>) | null | undefined, Configurator?: (new (options: AxiosServiceConfig) => any) | null | undefined): {
-            requester: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
-            config: InstanceType<{
-                new (config: AxiosServiceConfig): {
-                    module: string;
-                    prefix: string;
-                    permissionPrefix: string;
-                    permissionConfig: Record<string, string>;
-                    apiPathConfig: Record<string, string>;
-                };
-            }>;
-            definedConfig: AxiosDefineConfig;
             /**
              * @author: ares
              * @date: 2021/4/24 11:29

@@ -16,7 +16,6 @@
   "author": "ares <18292577207@126.com>",
   "license": "MIT",
   "dependencies": {
-    "ares-styled-logger": "workspace:^",
     "autobind-decorator": "^2.4.0",
     "axios": "^1.13.4",
     "lodash-es": "^4.17.23",

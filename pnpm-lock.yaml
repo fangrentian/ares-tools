@@ -29,9 +29,6 @@ importers:
 
   packages/axios-service:
     dependencies:
-      ares-styled-logger:
-        specifier: workspace:^
-        version: link:../styled-logger
       autobind-decorator:
         specifier: ^2.4.0
         version: 2.4.0

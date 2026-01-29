@@ -44,7 +44,10 @@ export interface AxiosDefineConfig {
 	sessionExpireCode?: number | string
 	responseCodeField?: string
 	responseMsgField?: string
-	defaultHeaders?: AxiosContentType
+	pageQueryPageField?: string
+	pageQueryPageSizeField?: string
+	pageQueryPageBoField?: string
+	requestContentType?: AxiosContentType
 	requestTimeout?: number
 	tokenKey?: string
 	getToken?: Fn
