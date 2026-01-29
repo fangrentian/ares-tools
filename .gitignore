@@ -6,3 +6,4 @@ logs
 /sources/sss-deploy/.env.linux-aliyun-bastion
 /sources/sss-deploy/.env.test
 /sources/sss-deploy/.env.windows-server
+/packages/test-vue/

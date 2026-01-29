@@ -1,12 +1,6 @@
-import type { SFTPWrapper } from 'ssh2'
+import { SFTPWrapper } from 'ssh2';
 
-
-export type Recordable<K extends string | number | symbol = string, T = any> = Record<
-	K extends null | undefined ? string : K,
-	T
->
-
-export interface SSHClientConfig {
+interface SSHClientConfig {
 	host?: string
 	port?: number | string
 	username?: string
@@ -14,10 +8,10 @@ export interface SSHClientConfig {
 	privateKey?: string
 	[key: string]: any
 }
-export interface BastionSSHClientConfig extends SSHClientConfig {
+interface BastionSSHClientConfig extends SSHClientConfig {
 	[key: string]: any
 }
-export interface TargetSSHClientConfig extends SSHClientConfig {
+interface TargetSSHClientConfig extends SSHClientConfig {
 	localDeployDir?: string
 	localDownloadDir?: string
 
@@ -31,34 +25,35 @@ export interface TargetSSHClientConfig extends SSHClientConfig {
 	remoteHealthHiddenFile?: string
 	[key: string]: any
 }
-export interface BastionChannelConfig {
+interface BastionChannelConfig {
 	srcIP?: string
 	srcPort?: number | string
 	dstIP?: string
 	dstPort?: number | string
 	[key: string]: any
 }
-export interface IntraServerSSHClientConfig {
+interface IntraServerSSHClientConfig {
 	username?: string
 	password?: string
 	[key: string]: any
 }
-export interface UploadDownloadConfig {
+interface UploadDownloadConfig {
 	localDir?: string
 	remoteDir?: string
 	[key: string]: any
 }
-export interface MakeDirectoryConfig {
+interface MakeDirectoryConfig {
 	path: string
 	method?: 'sftp' | 'exec'
 	givenSftp?: SFTPWrapper
 	[key: string]: any
 }
 
-export interface BuildConfig {
+interface BuildConfig {
 	build?: boolean
 	mode?: string
 	projectDir?: string
 	[key: string]: any
 }
 
+export type { BuildConfig as B, IntraServerSSHClientConfig as I, MakeDirectoryConfig as M, SSHClientConfig as S, TargetSSHClientConfig as T, UploadDownloadConfig as U, BastionChannelConfig as a, BastionSSHClientConfig as b };

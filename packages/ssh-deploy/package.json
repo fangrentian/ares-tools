@@ -1,17 +1,18 @@
 {
   "name": "ares-ssh-deploy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ssh deploy tools",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./utils/*": "./dist/utils/*"
+    "./utils/*": "./dist/utils/*",
+    "./types": "././dist/types/index.d.ts"
   },
   "scripts": {
     "deploy:windows-server": "dotenvx run --env-file=.env.windows-server -- node src/utils/deploy-windows-server.js",

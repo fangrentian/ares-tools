@@ -1,62 +1,6 @@
-/// <reference types="node" />
 import { NodeSSH, SSHExecCommandResponse, SSHExecCommandOptions } from 'node-ssh';
-import { Duplex, Writable, Readable } from 'stream';
-
-type ChannelType = "session" | "sftp" | "direct-tcpip" | "direct-streamlocal@openssh.com";
-
-type ChannelSubType = "exec" | "shell";
-
-interface Channel extends Duplex {
-    /** Standard input for the Channel. */
-    stdin: this;
-    /** Standard output for the Channel. */
-    stdout: this;
-    /** Standard error for the Channel. */
-    stderr: Writable | Readable;
-    /** Indicates whether this is a server or client channel. */
-    server: boolean;
-    /** The channel type, usually "session". */
-    type: ChannelType;
-    /** The channel subtype, usually "exec", "shell", or undefined. */
-    subtype?: ChannelSubType;
-    incoming: unknown;
-    outgoing: unknown;
-
-    /**
-     * Sends EOF to the remote side.
-     */
-    eof(): void;
-
-    /**
-     * Closes the channel on both sides.
-     */
-    close(...args: any[]): void;
-
-    /**
-     * Shuts down the channel on this side.
-     */
-    destroy(): this;
-
-    /**
-     * Session type-specific methods
-     */
-    setWindow(rows: number, cols: number, height: number, width: number): void;
-    signal(signalName: string): void;
-    exit(status: number): void;
-    exit(signalName: string, coreDumped?: boolean, msg?: string): void;
-
-    /**
-     * Emitted once the channel is completely closed on both the client and the server.
-     */
-    on(event: "close", listener: () => void): this;
-    on(event: "eof", listener: () => void): this;
-    on(event: "end", listener: () => void): this;
-    on(event: string | symbol, listener: Function): this;
-    once(event: "close", listener: () => void): this;
-    once(event: "eof", listener: () => void): this;
-    once(event: "end", listener: () => void): this;
-    once(event: string | symbol, listener: Function): this;
-}
+import { Channel } from 'ssh2';
+import { a as BastionChannelConfig, I as IntraServerSSHClientConfig, S as SSHClientConfig, U as UploadDownloadConfig, M as MakeDirectoryConfig } from '../shared/ssh-deploy.BPGd0bH8.mjs';
 
 /**
  * @author: ares
