@@ -1,0 +1,30 @@
+{
+  "name": "ares-axios-service",
+  "version": "0.0.0",
+  "description": "axios service",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./types": "./dist/types/index.d.ts"
+  },
+  "author": "ares <18292577207@126.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ares-styled-logger": "workspace:^",
+    "autobind-decorator": "^2.4.0",
+    "axios": "^1.13.4",
+    "lodash-es": "^4.17.23",
+    "path-browserify": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fangrentian/ares-tools.git",
+    "directory": "packages/axios-service"
+  }
+}

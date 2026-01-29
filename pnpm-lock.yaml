@@ -30,7 +30,7 @@ importers:
   packages/axios-service:
     dependencies:
       ares-styled-logger:
-        specifier: ^1.2.2
+        specifier: workspace:^
         version: link:../styled-logger
       autobind-decorator:
         specifier: ^2.4.0
@@ -39,7 +39,7 @@ importers:
         specifier: ^1.13.4
         version: 1.13.4
       lodash-es:
-        specifier: ^4.17.21
+        specifier: ^4.17.23
         version: 4.17.23
       path-browserify:
         specifier: ^1.0.1
@@ -94,6 +94,9 @@ importers:
 
   packages/test-vue:
     dependencies:
+      ares-axios-service:
+        specifier: workspace:^
+        version: link:../axios-service
       ares-styled-logger:
         specifier: workspace:^
         version: link:../styled-logger
