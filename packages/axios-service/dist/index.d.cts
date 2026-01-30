@@ -60,6 +60,28 @@ interface IResponse<T = any, P = boolean> {
 
 /**
  * @author: ares
+ * @date: 2026/1/30
+ * @description: 检查值是否为普通对象
+ * @param value 要检查的值
+ * @returns 如果值是普通对象则返回true，否则返回false
+ */
+declare function isPlainObject(value: unknown): boolean;
+/**
+ * @author: ares
+ * @date: 2026/1/30 上午8:40
+ * @description:
+ * @param path
+ * @ returns {root: string,dir: string,base: string, ext: string, name: string}
+ */
+declare function parsePath(path: string): {
+    root: string;
+    dir: string;
+    base: string;
+    ext: string;
+    name: string;
+};
+/**
+ * @author: ares
  * @date: 2026/1/28 下午1:57
  * @description: 定义AxiosService
  * @param config
@@ -307,4 +329,4 @@ declare const defineAxiosService: (config?: AxiosDefineConfig) => {
     };
 };
 
-export { defineAxiosService };
+export { defineAxiosService, isPlainObject, parsePath };

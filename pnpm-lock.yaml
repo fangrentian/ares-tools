@@ -35,12 +35,6 @@ importers:
       axios:
         specifier: ^1.13.4
         version: 1.13.4
-      lodash-es:
-        specifier: ^4.17.23
-        version: 4.17.23
-      path-browserify:
-        specifier: ^1.0.1
-        version: 1.0.1
 
   packages/ssh-deploy:
     dependencies:

@@ -77,7 +77,11 @@ class DictService extends BaseService {
 }
 
 // 实例化模块化`DictService`
-const dictService = new DictService({prefix: '/api/code/'})
+const dictService = new DictService({
+  module: 'dict',
+  prefix: '/api/code/',
+  permissionPrefix: 'sys:dict:',
+})
 // 使用模块化`DictService`实例方法
 dictService.findList(1, 44)
 ```
