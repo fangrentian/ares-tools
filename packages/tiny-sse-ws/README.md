@@ -23,6 +23,22 @@ yarn add ares-tiny-sse-ws
 pnpm add ares-tiny-sse-ws
 ```
 
+## 环境配置文件'.env'
+```env
+#日志级别
+LOG_LEVEL=info
+
+#服务端口
+PORT=3001
+
+#log
+LOG_DEFAULT_FILE=logs/report.log
+LOG_ERROR_PATH=logs/error
+
+#session
+SESSION_SECRET=secret
+```
+
 ## 快速开始
 
 ### 基础使用
