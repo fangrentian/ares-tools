@@ -1,0 +1,1 @@
+"use strict";const e=require("express-session");function _interopDefaultCompat(t){return t&&typeof t=="object"&&"default"in t?t.default:t}const e__default=_interopDefaultCompat(e),{SESSION_SECRET:s}=process.env;function getSessionMiddleware(){return e__default({secret:s,resave:!1,saveUninitialized:!0})}exports.getSessionMiddleware=getSessionMiddleware;

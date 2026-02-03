@@ -1,0 +1,26 @@
+/**
+ * 返回码
+ */
+declare enum RESCODE {
+    SUCCESS = 1000,
+    COMMFAIL = 1001,
+    VALIDATEFAIL = 1002,
+    NOTFOUND = 1003,
+    COREFAIL = 1004,
+    NOPERMISSION = 1005,
+    UNAUTHORIZED = 1006
+}
+/**
+ * 返回信息
+ */
+declare enum RESMESSAGE {
+    SUCCESS = "\u64CD\u4F5C\u6210\u529F",
+    COMMFAIL = "\u64CD\u4F5C\u5931\u8D25",
+    VALIDATEFAIL = "\u53C2\u6570\u6821\u9A8C\u5931\u8D25",
+    NOTFOUND = "404",
+    COREFAIL = "\u5185\u90E8\u5F02\u5E38",
+    NOPERMISSION = " \u6743\u9650\u4E0D\u8DB3",
+    UNAUTHORIZED = "token\u65E0\u6548"
+}
+
+export { RESCODE, RESMESSAGE };

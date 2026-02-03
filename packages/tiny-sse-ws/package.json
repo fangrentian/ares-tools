@@ -1,0 +1,35 @@
+{
+  "name": "ares-tiny-sse-ws",
+  "version": "1.0.0",
+  "description": "tiny sse/websocket server",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./utils/*": "./dist/utils/*",
+    "./types": "././dist/types/index.d.ts"
+  },
+  "scripts": {},
+  "author": "ares <18292577207@126.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.49.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-ws": "^5.0.2",
+    "iconv-lite": "^0.7.0",
+    "lodash-es": "^4.17.21",
+    "log4js": "^6.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fangrentian/ares-tools.git",
+    "directory": "packages/tiny-sse-ws"
+  }
+}
