@@ -24,7 +24,10 @@ interface AxiosDefineConfig {
 	sessionExpireCode?: number | string
 	responseCodeField?: string
 	responseMsgField?: string
-	defaultHeaders?: AxiosContentType
+	pageQueryPageField?: string
+	pageQueryPageSizeField?: string
+	pageQueryPageBoField?: string
+	requestContentType?: AxiosContentType
 	requestTimeout?: number
 	tokenKey?: string
 	getToken?: Fn
@@ -57,6 +60,28 @@ interface IResponse<T = any, P = boolean> {
 
 /**
  * @author: ares
+ * @date: 2026/1/30
+ * @description: 检查值是否为普通对象
+ * @param value 要检查的值
+ * @returns 如果值是普通对象则返回true，否则返回false
+ */
+declare function isPlainObject(value: unknown): boolean;
+/**
+ * @author: ares
+ * @date: 2026/1/30 上午8:40
+ * @description:
+ * @param path
+ * @ returns {root: string,dir: string,base: string, ext: string, name: string}
+ */
+declare function parsePath(path: string): {
+    root: string;
+    dir: string;
+    base: string;
+    ext: string;
+    name: string;
+};
+/**
+ * @author: ares
  * @date: 2026/1/28 下午1:57
  * @description: 定义AxiosService
  * @param config
@@ -66,34 +91,15 @@ declare const defineAxiosService: (config?: AxiosDefineConfig) => {
     $upload: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
     $download: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
     $axios: (config: AxiosRequestConfig) => Promise<AxiosResponse>;
-    BaseServiceConfigurator: {
-        new (config: AxiosServiceConfig): {
-            module: string;
-            prefix: string;
-            permissionPrefix: string;
-            permissionConfig: Record<string, string>;
-            apiPathConfig: Record<string, string>;
-        };
-    };
     BaseService: {
-        new (requester?: (<T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>) | null | undefined, Configurator?: (new (options: AxiosServiceConfig) => {
+        new (options?: AxiosServiceConfig, requester?: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>): {
+            requester: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
+            definedServiceEnv: AxiosDefineConfig;
             module: string;
             prefix: string;
             permissionPrefix: string;
             permissionConfig: Record<string, string>;
             apiPathConfig: Record<string, string>;
-        }) | null | undefined, options?: AxiosServiceConfig): {
-            requester: <T>(config: AxiosRequestConfig, ignoreError?: boolean) => Promise<IResponse<T>>;
-            config: InstanceType<{
-                new (config: AxiosServiceConfig): {
-                    module: string;
-                    prefix: string;
-                    permissionPrefix: string;
-                    permissionConfig: Record<string, string>;
-                    apiPathConfig: Record<string, string>;
-                };
-            }>;
-            definedConfig: AxiosDefineConfig;
             /**
              * @author: ares
              * @date: 2021/4/24 11:29
@@ -323,4 +329,4 @@ declare const defineAxiosService: (config?: AxiosDefineConfig) => {
     };
 };
 
-export { defineAxiosService };
+export { defineAxiosService, isPlainObject, parsePath };
